@@ -86,8 +86,9 @@
                         aria-expanded="false"><i class="ri-user-line"></i><span>Admin</span><i
                            class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                      <ul id="manajemenUser" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li><a href="/admin/pengguna">Data User</a></li>
-                        <li><a href="/admin/pengguna/tambah-pengguna">Tambah Pengguna</a></li>
+                        <li><a href="/admin/pengguna">Data Pengguna</a></li>
+                        {{-- <li><a href="/admin/pengguna/tambah-pengguna">Tambah Pengguna</a></li> --}}
+                        <li><a href="/admin/pasien">Data Pasien</a></li>
                      </ul>
                   </li>
 

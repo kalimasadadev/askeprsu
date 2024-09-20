@@ -11,11 +11,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class PenggunaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __construct()
     {
         View::share('modul', 'admin');

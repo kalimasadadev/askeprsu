@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DasborController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Middleware\CheckAktifPengguna;
 use Illuminate\Support\Facades\Route;
@@ -44,4 +45,13 @@ Route::group(['prefix' => 'admin/pengguna', 'middleware' => CheckAktifPengguna::
     Route::delete('/hapus-pengguna/{id}', [PenggunaController::class, 'hapusPengguna']);
     Route::get('/lihat-pengguna/{id}', [PenggunaController::class, 'lihatPengguna']);
     Route::patch('/lihat-pengguna/{id}', [PenggunaController::class, 'lihatPengguna']);
+});
+
+Route::group(['prefix' => 'admin/pasien', 'middleware' => CheckAktifPengguna::class], function () {
+    Route::get('/', [PasienController::class, 'index']);
+    Route::get('/tambah-pasien', [PasienController::class, 'tambahPasien']);
+    Route::post('/tambah-pasien', [PasienController::class, 'tambahPasien']);
+    Route::delete('/hapus-pasien/{id}', [PasienController::class, 'hapusPasien']);
+    Route::get('/lihat-pasien/{id}', [PasienController::class, 'lihatPasien']);
+    Route::patch('/lihat-pasien/{id}', [PasienController::class, 'lihatPasien']);
 });
