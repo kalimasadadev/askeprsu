@@ -40,6 +40,8 @@ Route::get("dasbor", [DasborController::class, 'index'])->middleware(CheckAktifP
 Route::group(['prefix' => 'admin/pengguna', 'middleware' => CheckAktifPengguna::class], function () {
     Route::get('/', [PenggunaController::class, 'index']);
     Route::get('/tambah-pengguna', [PenggunaController::class, 'tambahPengguna']);
+    Route::post('/tambah-pengguna', [PenggunaController::class, 'tambahPengguna']);
     Route::delete('/hapus-pengguna/{id}', [PenggunaController::class, 'hapusPengguna']);
     Route::get('/lihat-pengguna/{id}', [PenggunaController::class, 'lihatPengguna']);
+    Route::patch('/lihat-pengguna/{id}', [PenggunaController::class, 'lihatPengguna']);
 });

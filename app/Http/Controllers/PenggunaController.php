@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Constants;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -61,8 +62,30 @@ class PenggunaController extends Controller
 
     public function tambahPengguna(Request $request)
     {
+        $model = new Pengguna();
+        if ($request->isMethod("POST")) {
+            $validator = Validator::make($request->all(), [
+                'username' => 'required',
+                'password' => 'required',
+                'profesi' => 'required',
+                'nama' => 'required',
+                'nip' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => $validator->errors()
+                ]);
+            } else {
+                return response()->json([
+                    'error' => false,
+                    'message' => "data pengguna baru telah ditambahkan"
+                ]);
+            }
+        }
         $data["menu"] = 'pengguna';
         $data["submenu"] = 'tambah pengguna';
+        $data['model'] = $model;
         return view("/pengguna/tambahpengguna", $data);
     }
 
@@ -75,6 +98,26 @@ class PenggunaController extends Controller
     public function lihatPengguna(Request $request, $id)
     {
         $model = Pengguna::where("id", $id)->first();
+        if ($request->isMethod("PATCH")) {
+            $validator = Validator::make($request->all(), [
+                'username' => 'required',
+                'profesi' => 'required',
+                'nama' => 'required',
+                'nip' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => $validator->errors()
+                ]);
+            } else {
+                Pengguna::where("id", $id)->update($request->all());
+                return response()->json([
+                    'error' => false,
+                    'message' => "data pengguna {$model->nama} telah diperbarui"
+                ]);
+            }
+        }
         $data["menu"] = 'pengguna';
         $data["submenu"] = 'lihat pengguna';
         $data['model'] = $model;

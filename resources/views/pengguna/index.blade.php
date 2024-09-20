@@ -41,6 +41,7 @@
                 <tr>
                     <th scope="col" width="1">#</th>
                     <th scope="col">USERNAME</th>
+                    <th scope="col" width="1">NIP</th>
                     <th scope="col">NAMA</th>
                     <th scope="col">PROFESI</th>
                     <th scope="col">AKTIF</th>
@@ -109,6 +110,10 @@
                 {
                     data: 'username',
                     name: 'username'
+                },
+                {
+                    data: 'nip',
+                    name: 'nip'
                 },
                 {
                     data: 'nama',
