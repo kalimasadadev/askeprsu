@@ -31,6 +31,9 @@ class PasienController extends Controller
                         $query->where('status', $request->faktif);
                     }
                 })
+                ->editColumn('TANGGAL_LAHIR', function (Pasien $pasien) {
+                    return $pasien->getTanggalLahirPasienIndonesia();
+                })
                 ->editColumn('NORM', function (Pasien $pasien) {
                     return sprintf("%06d", $pasien->NORM);
                 })
